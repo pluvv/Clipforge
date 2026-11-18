@@ -1,20 +1,22 @@
-# ClipForge AI
-Local-first prototype that transcribes a video and ranks candidate moments from the transcript, then renders vertical MP4 clips.
+# ClipForge
+
+ClipForge turns videos into short vertical clips. Paste a YouTube URL or upload a video, describe the moments you want, and generate clips.
+
+## Windows quick start
+1. Download or clone this repository.
+2. Double-click `start.bat`. It installs portable FFmpeg and Python dependencies on first launch.
+3. Open http://127.0.0.1:7860 in your browser.
+4. Paste a YouTube URL or upload a video and press Generate.
 
 ## Requirements
 - Windows 10/11
-- Python 3.10–3.12
-- FFmpeg and ffprobe installed and available on PATH
+- Python 3.10+ (Python launcher `py`)
+- Internet connection for setup, downloads, and model download on first run
 
-## Start
-1. Install FFmpeg (ensure `ffmpeg` and `ffprobe` work in Command Prompt).
-2. Double-click `start.bat`. First launch installs Python dependencies.
-3. Open http://127.0.0.1:7860
-4. Upload a video and enter a clipping prompt.
-
-## Prototype limitations
-- Transcript heuristics, not yet semantic LLM ranking; prompt keyword matching is rudimentary.
-- CPU transcription by default; CUDA can be enabled with `USE_CUDA=1` after installing compatible CUDA libraries.
-- Clips use center-crop portrait framing. No burned-in subtitles yet.
-- YouTube URL ingestion is not implemented. Use videos you own or are authorized to process; respect platform terms and rights.
-- Long videos can take a while. This prototype renders candidate clips sequentially.
+## Notes
+- FFmpeg is downloaded into the project tools folder.
+- Whisper transcription currently runs on CPU.
+- Clip selection is a basic transcript heuristic; results may need review.
+- Portrait framing is center-cropped.
+- Only process videos you have permission to download or edit, and follow YouTube's terms and applicable copyright law.
+- Keep the terminal window running while using the app.
