@@ -2,7 +2,7 @@ from fastapi import FastAPI, UploadFile, File, Form, HTTPException
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from pathlib import Path
-import subprocess, uuid, re
+import subprocess, uuid, re, os
 
 ROOT=Path(__file__).resolve().parents[1]
 UPLOAD=ROOT/'uploads'; OUTPUT=ROOT/'output'; UPLOAD.mkdir(exist_ok=True); OUTPUT.mkdir(exist_ok=True)
@@ -41,7 +41,7 @@ async def generate(url: str=Form(''), prompt: str=Form(''), video: UploadFile|No
     except Exception: raise HTTPException(500,'FFmpeg/ffprobe could not read the video. Restart using start.bat.')
     try:
         from faster_whisper import WhisperModel
-        model=WhisperModel('small',device='cpu',compute_type='int8')
+        model=WhisperModel(os.getenv('CLIPFORGE_MODEL', 'small'),device='cpu',compute_type='int8')
         trans,_=model.transcribe(str(source),vad_filter=True)
         segments=[(seg.start,seg.end,seg.text.strip()) for seg in trans]
         key=[w.lower() for w in re.findall(r'\w+',prompt) if len(w)>3]
