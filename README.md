@@ -20,3 +20,6 @@ ClipForge turns videos into short vertical clips. Paste a YouTube URL or upload 
 - Portrait framing is center-cropped.
 - Only process videos you have permission to download or edit, and follow YouTube's terms and applicable copyright law.
 - Keep the terminal window running while using the app.
+
+## Deploy online (cloud)
+This repository includes a Render Blueprint (`render.yaml`). GitHub Pages cannot run the video processing backend. To deploy as a public web app, connect this repository to Render and create a Blueprint deployment. See [DEPLOY.md](DEPLOY.md). The free tier is resource-limited and may struggle with longer videos.
